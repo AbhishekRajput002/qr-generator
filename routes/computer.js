@@ -128,12 +128,23 @@ module.exports = (db) => {
   });
 
   // Download QR
-  router.get('/download-qr/:id', (req, res) => {
-    const filePath = path.join(qrDir, `computer-${req.params.id}.png`);
-    res.download(filePath, `computer-specs-${req.params.id}.png`, (err) => {
-      if (err) console.error('Download error:', err);
+router.get('/download-qr/:id', async (req, res) => {
+  try {
+    const detailsUrl = `${req.protocol}://${req.get('host')}/computer/${req.params.id}`;
+    const qrImageBuffer = await qrcode.toBuffer(detailsUrl, {
+      errorCorrectionLevel: 'H',
+      type: 'png',
+      margin: 4,
+      scale: 10
     });
-  });
+    res.set('Content-Type', 'image/png');
+    res.set('Content-Disposition', `attachment; filename="computer-specs-${req.params.id}.png"`);
+    res.send(qrImageBuffer);
+  } catch (err) {
+    console.error('Download error:', err);
+    res.status(500).send('QR download failed');
+  }
+}); 
 
   return router;
 };
