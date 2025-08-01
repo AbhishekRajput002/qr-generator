@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Details</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🖥️ Computer Specifications</h1>
+    
+    <div class="specs-card">
+      <div class="spec-item">
+        <span class="spec-label">CPU:</span>
+        <span class="spec-value"><%= computer.cpu %></span>
+      </div>
+      
+      <div class="spec-item">
+        <span class="spec-label">RAM:</span>
+        <span class="spec-value"><%= computer.ram %></span>
+      </div>
+      
+      <div class="spec-item">
+        <span class="spec-label">Storage:</span>
+        <span class="spec-value"><%= computer.storage %></span>
+      </div>
+      
+      <div class="spec-item">
+        <span class="spec-label">GPU:</span>
+        <span class="spec-value"><%= computer.gpu %></span>
+      </div>
+      
+      <div class="spec-item">
+        <span class="spec-label">OS:</span>
+        <span class="spec-value"><%= computer.os %></span>
+      </div>
+      
+      <div class="spec-item">
+        <span class="spec-label">Serial Number:</span>
+        <span class="spec-value"><%= computer.serial_number %></span>
+      </div>
+      
+      <div class="spec-item">
+        <span class="spec-label">Recorded:</span>
+        <span class="spec-value"><%= computer.created_at.toLocaleString() %></span>
+      </div>
+    </div>
+    
+    <div class="back-link">
+      <a href="javascript:history.back()">← Back to previous page</a>
+    </div>
+  </div>
+</body>
+</html>

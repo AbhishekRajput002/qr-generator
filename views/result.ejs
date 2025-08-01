@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Generated</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .data-section {
+      margin-top: 30px;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .raw-json {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .test-instructions {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✅ QR Code Generated!</h1>
+    
+    <div class="qr-container">
+      <img src="<%= qrImage %>" alt="Computer Specifications QR Code">
+    </div>
+    
+    <div class="actions">
+      <a href="<%= qrImage %>" download="computer-<%= computerData.serial_number %>.png" class="btn">
+        Download QR Code
+      </a>
+    </div>
+    
+    <div class="data-section">
+      <h3>QR Code Contains This Data:</h3>
+      <div class="raw-json"><%= jsonData %></div>
+      
+      <div class="test-instructions">
+        <h4>Testing Instructions:</h4>
+        <ol>
+          <li>Download the QR code</li>
+          <li>Open a QR scanner app on your phone</li>
+          <li>Scan the downloaded image</li>
+          <li>You should see the complete JSON data</li>
+        </ol>
+        <p>If you don't see the data, try these scanners:</p>
+        <ul>
+          <li>Google Lens</li>
+          <li>QR Scanner from the Play Store/App Store</li>
+          <li>Your phone's built-in camera app</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

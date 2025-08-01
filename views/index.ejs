@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer QR Generator</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>💻 Computer Spec QR Generator</h1>
+    
+    <form action="/add-computer" method="POST">
+      <div class="form-group">
+        <label for="cpu">CPU Model</label>
+        <input type="text" id="cpu" name="cpu" placeholder="e.g., Intel Core i7-12700K" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="ram">RAM</label>
+        <input type="text" id="ram" name="ram" placeholder="e.g., 32GB DDR4" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="storage">Storage</label>
+        <input type="text" id="storage" name="storage" placeholder="e.g., 1TB NVMe SSD" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="gpu">GPU</label>
+        <input type="text" id="gpu" name="gpu" placeholder="e.g., NVIDIA RTX 3080" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="os">Operating System</label>
+        <input type="text" id="os" name="os" placeholder="e.g., Windows 11 Pro" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="serial_number">Serial Number</label>
+        <input type="text" id="serial_number" name="serial_number" placeholder="Unique identifier" required>
+      </div>
+      
+      <button type="submit" class="btn">Generate QR Code</button>
+    </form>
+  </div>
+</body>
+</html>
