@@ -1,48 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computer QR Generator</title>
+  <title>Computer QR Generator - Admin Panel</title>
   <link rel="stylesheet" href="/css/style.css">
-</head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head> 
 <body>
-  <div class="container">
-    <h1>💻 Computer Spec QR Generator</h1>
-    
-    <form action="/add-computer" method="POST">
-      <div class="form-group">
-        <label for="cpu">CPU Model</label>
-        <input type="text" id="cpu" name="cpu" placeholder="e.g., Intel Core i7-12700K" required>
+  <div class="page-wrapper">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <i class="fas fa-qrcode logo-icon"></i>
+          <h1 class="logo-text">QR Generator</h1>
+        </div>
+        <nav class="nav-menu">
+          <a href="/computers" class="nav-link">
+            <i class="fas fa-list"></i>
+            <span>View Computers</span>
+          </a>
+          <a href="/" class="nav-link active">
+            <i class="fas fa-plus"></i>
+            <span>Add Computer</span>
+          </a>
+          <a href="/admin" class="nav-link">
+            <i class="fas fa-user-shield"></i>
+            <span>Admin Panel</span>
+          </a>
+        </nav>
       </div>
-      
-      <div class="form-group">
-        <label for="ram">RAM</label>
-        <input type="text" id="ram" name="ram" placeholder="e.g., 32GB DDR4" required>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+          <div class="welcome-content">
+            <h2 class="welcome-title">
+              <i class="fas fa-qrcode"></i>
+              Computer QR Generator
+            </h2>
+            <p class="welcome-subtitle">Generate QR codes for computer specifications</p>
+          </div>
+          <div class="welcome-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+          <div class="form-header">
+            <h3 class="form-title">
+              <i class="fas fa-plus-circle"></i>
+              Add New Computer
+            </h3>
+            <p class="form-description">Fill in the computer specifications below to generate a QR code</p>
+          </div>
+
+          <form action="/add-computer" method="POST" class="computer-form">
+            <div class="form-grid">
+              <!-- Basic Information -->
+              <div class="form-group">
+                <label for="computer_name" class="form-label">
+                  <i class="fas fa-tag"></i>
+                  Computer Name
+                </label>
+                <input type="text" id="computer_name" name="computer_name" class="form-input" 
+                       placeholder="e.g., Office Laptop 1">
+                <div class="input-icon">
+                  <i class="fas fa-tag"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="department" class="form-label">
+                  <i class="fas fa-building"></i>
+                  Department
+                </label>
+                <input type="text" id="department" name="department" class="form-input" 
+                       placeholder="e.g., IT Department, Engineering, Sales">
+                <div class="input-icon">
+                  <i class="fas fa-building"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="location" class="form-label">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Location
+                </label>
+                <input type="text" id="location" name="location" class="form-input" 
+                       placeholder="e.g., Room 101, Building A">
+                <div class="input-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+              </div>
+
+              <!-- CPU Section -->
+              <div class="form-group">
+                <label for="cpu" class="form-label">
+                  <i class="fas fa-microchip"></i>
+                  CPU Model
+                </label>
+                <input type="text" id="cpu" name="cpu" class="form-input" 
+                       placeholder="e.g., Intel Core i7-12700K" required>
+                <div class="input-icon">
+                  <i class="fas fa-microchip"></i>
+                </div>
+              </div>
+
+              <!-- RAM Section -->
+              <div class="form-group">
+                <label for="ram" class="form-label">
+                  <i class="fas fa-memory"></i>
+                  RAM
+                </label>
+                <input type="text" id="ram" name="ram" class="form-input" 
+                       placeholder="e.g., 32GB DDR4" required>
+                <div class="input-icon">
+                  <i class="fas fa-memory"></i>
+                </div>
+              </div>
+
+              <!-- Storage Section -->
+              <div class="form-group">
+                <label for="storage" class="form-label">
+                  <i class="fas fa-hdd"></i>
+                  Storage
+                </label>
+                <input type="text" id="storage" name="storage" class="form-input" 
+                       placeholder="e.g., 1TB NVMe SSD" required>
+                <div class="input-icon">
+                  <i class="fas fa-hdd"></i>
+                </div>
+              </div>
+
+              <!-- GPU Section -->
+              <div class="form-group">
+                <label for="gpu" class="form-label">
+                  <i class="fas fa-tv"></i>
+                  GPU
+                </label>
+                <input type="text" id="gpu" name="gpu" class="form-input" 
+                       placeholder="e.g., NVIDIA RTX 3080" required>
+                <div class="input-icon">
+                  <i class="fas fa-tv"></i>
+                </div>
+              </div>
+
+              <!-- OS Section -->
+              <div class="form-group">
+                <label for="os" class="form-label">
+                  <i class="fab fa-windows"></i>
+                  Operating System
+                </label>
+                <input type="text" id="os" name="os" class="form-input" 
+                       placeholder="e.g., Windows 11 Pro" required>
+                <div class="input-icon">
+                  <i class="fab fa-windows"></i>
+                </div>
+              </div>
+
+              <!-- Serial Number Section -->
+              <div class="form-group">
+                <label for="serial_number" class="form-label">
+                  <i class="fas fa-barcode"></i>
+                  Serial Number
+                </label>
+                <input type="text" id="serial_number" name="serial_number" class="form-input" 
+                       placeholder="Unique identifier" required>
+                <div class="input-icon">
+                  <i class="fas fa-barcode"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-qrcode"></i>
+                Generate QR Code
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+          <div class="info-header">
+            <i class="fas fa-info-circle"></i>
+            <h4>How it works</h4>
+          </div>
+          <div class="info-content">
+            <div class="info-item">
+              <i class="fas fa-edit"></i>
+              <div>
+                <h5>Fill the form</h5>
+                <p>Enter the computer specifications in the form above</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-qrcode"></i>
+              <div>
+                <h5>Generate QR</h5>
+                <p>Click the button to create a QR code with the specs</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-download"></i>
+              <div>
+                <h5>Download & Use</h5>
+                <p>Download the QR code and attach it to the computer</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="form-group">
-        <label for="storage">Storage</label>
-        <input type="text" id="storage" name="storage" placeholder="e.g., 1TB NVMe SSD" required>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Computer QR Generator. All rights reserved.</p>
       </div>
-      
-      <div class="form-group">
-        <label for="gpu">GPU</label>
-        <input type="text" id="gpu" name="gpu" placeholder="e.g., NVIDIA RTX 3080" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="os">Operating System</label>
-        <input type="text" id="os" name="os" placeholder="e.g., Windows 11 Pro" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="serial_number">Serial Number</label>
-        <input type="text" id="serial_number" name="serial_number" placeholder="Unique identifier" required>
-      </div>
-      
-      <button type="submit" class="btn">Generate QR Code</button>
-    </form>
+    </footer>
   </div>
+
+  <script>
+    // Auto-generate computer name from serial number
+    document.getElementById('serial_number').addEventListener('input', function() {
+      const serial = this.value;
+      const computerName = document.getElementById('computer_name');
+      if (serial && !computerName.value) {
+        computerName.value = `Computer ${serial}`;
+      }
+    });
+
+    // Form validation
+    document.querySelector('.computer-form').addEventListener('submit', function(e) {
+      const requiredFields = this.querySelectorAll('[required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          field.classList.add('error');
+          isValid = false;
+        } else {
+          field.classList.remove('error');
+        }
+      });
+      
+      if (!isValid) {
+        e.preventDefault();
+        alert('Please fill in all required fields marked with *');
+      }
+    });
+  </script>
 </body>
-</html>
+</html> 

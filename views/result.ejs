@@ -31,7 +31,14 @@
 </head>
 <body>
   <div class="container">
-    <h1>✅ QR Code Generated!</h1>
+    <h1><% if (typeof isRegenerated !== 'undefined' && isRegenerated) { %>🔄 QR Code Regenerated!<% } else { %>✅ QR Code Generated!<% } %></h1>
+    
+    <% if (typeof isRegenerated !== 'undefined' && isRegenerated) { %>
+      <div class="alert alert-info" style="background: #e3f2fd; border: 1px solid #90caf9; color: #1976d2; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+        <i class="fas fa-info-circle"></i>
+        <strong>Note:</strong> This QR code has been regenerated using the original data that was stored when this computer was first added to the system.
+      </div>
+    <% } %>
     
     <div class="qr-container">
       <img src="<%= qrImage %>" alt="Computer Specifications QR Code">
@@ -41,11 +48,20 @@
       <a href="<%= qrImage %>" download="computer-<%= computerData.serial_number %>.png" class="btn">
         Download QR Code
       </a>
+      <% if (typeof isFromAdmin !== 'undefined' && isFromAdmin) { %>
+        <a href="/admin/computers" class="btn" style="background: #6c757d; margin-left: 1rem;">
+          <i class="fas fa-arrow-left"></i>
+          Back to Admin
+        </a>
+      <% } else { %>
+        <a href="/computers" class="btn" style="background: #6c757d; margin-left: 1rem;">
+          <i class="fas fa-arrow-left"></i>
+          Back to Computers
+        </a>
+      <% } %>
     </div>
     
     <div class="data-section">
-      <h3>QR Code Contains This Data:</h3>
-      <div class="raw-json"><%= jsonData %></div>
       
       <div class="test-instructions">
         <h4>Testing Instructions:</h4>

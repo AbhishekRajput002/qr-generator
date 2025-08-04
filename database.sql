@@ -10,6 +10,15 @@ CREATE TABLE computers (
     gpu VARCHAR(255) NOT NULL,
     os VARCHAR(255) NOT NULL,
     serial_number VARCHAR(255) UNIQUE NOT NULL,
+    computer_name VARCHAR(255),
+    department VARCHAR(255),
+    location VARCHAR(255),
+    ip_address VARCHAR(45),
+    mac_address VARCHAR(17),
+    purchase_date DATE,
+    warranty_expiry DATE,
+    notes TEXT,
+    qr_data TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

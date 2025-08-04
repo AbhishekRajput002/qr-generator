@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - QR Generator</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <i class="fas fa-qrcode logo-icon"></i>
+          <h1 class="logo-text">Admin Dashboard</h1>
+        </div>
+        <nav class="nav-menu">
+          <a href="/admin" class="nav-link active">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="/admin/computers" class="nav-link">
+            <i class="fas fa-laptop"></i>
+            <span>Manage Computers</span>
+          </a>
+          <a href="/admin/add-computer" class="nav-link">
+            <i class="fas fa-plus"></i>
+            <span>Add Computer</span>
+          </a>
+          <a href="/computers" class="nav-link">
+            <i class="fas fa-eye"></i>
+            <span>View Public</span>
+          </a>
+          <a href="/admin/logout" class="nav-link" style="color: #dc2626;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Admin Welcome Section -->
+        <div class="admin-welcome">
+          <div class="welcome-content">
+            <h2 class="welcome-title">
+              <i class="fas fa-user-shield"></i>
+              Welcome, Administrator!
+            </h2>
+            <p class="welcome-subtitle">Manage your computer database and QR code system</p>
+          </div>
+          <div class="welcome-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="dashboard-stats">
+          <div class="stat-card primary">
+            <div class="stat-icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number"><%= totalComputers %></span>
+              <span class="stat-label">Total Computers</span>
+            </div>
+          </div>
+          
+          <div class="stat-card success">
+            <div class="stat-icon">
+              <i class="fas fa-qrcode"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number"><%= totalQRGenerated %></span>
+              <span class="stat-label">QR Codes Generated</span>
+            </div>
+          </div>
+          
+          <div class="stat-card warning">
+            <div class="stat-icon">
+              <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number"><%= todayAdded %></span>
+              <span class="stat-label">Added Today</span>
+            </div>
+          </div>
+          
+          <div class="stat-card info">
+            <div class="stat-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-number"><%= systemStatus %></span>
+              <span class="stat-label">System Status</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <h3 class="section-title">
+            <i class="fas fa-bolt"></i>
+            Quick Actions
+          </h3>
+          <div class="actions-grid">
+            <a href="/admin/add-computer" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-plus-circle"></i>
+              </div>
+              <h4>Add New Computer</h4>
+              <p>Add a new computer to the database</p>
+            </a>
+            
+            <a href="/admin/computers" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-edit"></i>
+              </div>
+              <h4>Manage Computers</h4>
+              <p>Edit, delete, or view computer details</p>
+            </a>
+            
+            <a href="/admin/computers-by-department" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <h4>View by Department</h4>
+              <p>Organize computers by department</p>
+            </a>
+            
+            <a href="/admin/export-computers" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-download"></i>
+              </div>
+              <h4>Export Data</h4>
+              <p>Export computer data to CSV/Excel</p>
+            </a>
+            
+            <!-- <a href="/admin/settings" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-cog"></i>
+              </div>
+              <h4>System Settings</h4>
+              <p>Configure system preferences</p>
+            </a> -->
+          </div>
+        </div>
+
+
+        <!-- Department-wise Computers -->
+        <div class="department-computers">
+          <h3 class="section-title">
+            <i class="fas fa-building"></i>
+            Computers by Department
+          </h3>
+          <div class="department-grid">
+            <% if (departmentStats && Object.keys(departmentStats).length > 0) { %>
+              <% Object.entries(departmentStats).forEach(([department, count]) => { %>
+                <div class="department-card">
+                  <div class="department-header">
+                    <i class="fas fa-building"></i>
+                    <h4><%= department %></h4>
+                    <span class="computer-count"><%= count %> computers</span>
+                  </div>
+                  <div class="department-actions">
+                    <a href="/admin/computers-by-department/<%= encodeURIComponent(department) %>" class="btn btn-sm btn-primary">
+                      <i class="fas fa-eye"></i> View Details
+                    </a>
+                  </div>
+                </div>
+              <% }); %>
+            <% } else { %>
+              <div class="empty-departments">
+                <i class="fas fa-building"></i>
+                <p>No departments found</p>
+              </div>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- System Information -->
+        <div class="system-info">
+          <h3 class="section-title">
+            <i class="fas fa-info-circle"></i>
+            System Information
+          </h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Database Status:</span>
+              <span class="info-value status-online">Online</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Server Uptime:</span>
+              <span class="info-value"><%= serverUptime %></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Last Backup:</span>
+              <span class="info-value"><%= lastBackup %></span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Storage Used:</span>
+              <span class="info-value"><%= storageUsed %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Computer QR Generator - Admin Panel. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html> 
