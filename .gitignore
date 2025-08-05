@@ -39,6 +39,4 @@ jspm_packages/
 Thumbs.db
 
 # Coverage reports
-coverage/
-
-#
+coverage/ 
